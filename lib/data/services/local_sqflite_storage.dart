@@ -34,13 +34,6 @@ class TaskLocalSqfliteStorage {
 
   Future<void> insert(Map<String, Object?> data) async {
     final db = await database;
-    final todo = data;
-    print("---------------------------------------------");
-    print(todo);
-    if (todo.containsKey("id")) {
-      todo.remove("id");
-    }
-    print(todo);
     await db.insert(
       taskTableKey,
       data,
@@ -48,15 +41,17 @@ class TaskLocalSqfliteStorage {
     );
   }
 
-  Future<void> update(Map<String, Object?> data) async {
+  Future<void> update(
+    Map<String, Object?> data,
+    int id,
+  ) async {
     final db = await database;
-    print(data);
+
     await db.update(
       taskTableKey,
       data,
       where: "id=?",
-      whereArgs: [data['id']],
-      conflictAlgorithm: ConflictAlgorithm.rollback,
+      whereArgs: [id],
     );
   }
 

@@ -114,6 +114,12 @@ class TimeAndButton extends StatelessWidget {
 }
 
 String changeTimesToString(TaskModel task) {
+  if (task.plannedStartTime.isAfter(task.plannedEndTime)) {
+    task = task.copyWith(
+      plannedEndTime: task.plannedStartTime,
+      plannedStartTime: task.plannedEndTime,
+    );
+  }
   if (task.startTime != null && task.endTime != null) {
     return "${task.startTime!.hour.toString().padLeft(2, "0")}"
         ":${task.startTime!.minute.toString().padLeft(2, "0")}"

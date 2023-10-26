@@ -90,9 +90,7 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
     final localization = AppLocalizations.of(context);
     int remind =
         int.tryParse(remindController.text.substring(0, 2).trim()) ?? 5;
-    int firstTime = startTime.hour * 60 + startTime.minute;
-    int secondTime = endTime.hour * 60 + endTime.minute;
-    if (firstTime - secondTime > 0 && endTime.hour < 0) {
+    if (startTime.isAfter(endTime)) {
       DateTime temp = endTime;
       endTime = startTime;
       startTime = temp;
@@ -105,8 +103,9 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
       note: noteController.text,
       date: selectedDate,
       remind: remind,
-      color: Color(int.tryParse(colorController.text) ??
-          AppColors.taskColors.first.value),
+      color: Color(
+        int.tryParse(colorController.text) ?? AppColors.taskColors.first.value,
+      ),
       plannedStartTime: startTime,
       plannedEndTime: endTime,
       priority: priorityController.text == localization.none

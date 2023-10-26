@@ -7,4 +7,8 @@ class Time {
     required this.second,
     required this.difference,
   });
+
+  @override
+  String toString() =>
+      'Time(first: $first, second: $second, difference: $difference)';
 }

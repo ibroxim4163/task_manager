@@ -8,21 +8,16 @@ import 'data/services/local_shared_preferences_storage.dart';
 import 'data/services/local_sqflite_storage.dart';
 import 'data/services/notification_service.dart';
 import 'logic/language_and_password_bloc/language_and_password_bloc.dart';
-import 'logic/simple_bloc_observer.dart';
 import 'logic/task_bloc/task_bloc.dart';
 import 'presentation/main_page.dart';
 import 'presentation/security_page/security_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetBinding);
   await TaskLocalSqfliteStorage.init();
   await LocalSharedPreferencesStorage.dbInit();
   await NotificationService.settings();
-  print("asdas");
-  Bloc.observer = SimpleBlocObserver();
   runApp(const App());
-  // await Future.delayed(Duration(seconds: 3));
 }
 
 class App extends StatelessWidget {
@@ -62,6 +57,7 @@ class App extends StatelessWidget {
               context.watch<LanguageAndPasswordBloc>().state.password;
           print("password=$password");
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: locale,

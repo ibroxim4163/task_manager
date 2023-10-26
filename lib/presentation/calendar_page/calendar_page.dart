@@ -86,29 +86,61 @@ class CalendarPage extends StatelessWidget {
   }
 }
 
+// Time changeTimes(TaskModel task) {
+//   double first = 0;
+//   double second = 0;
+//   double difference = 0;
+//   if (task.startTime != null && task.endTime != null) {
+//     first =
+//         ((task.startTime!.hour * 60 + task.startTime!.minute) - 60).toDouble();
+//     second = (task.endTime!.hour * 60 + task.endTime!.minute).toDouble();
+//     difference = (second - (first + 60)).abs();
+
+//   } else {
+//     first =
+//         ((task.plannedStartTime.hour * 60 + task.plannedStartTime.minute) - 60)
+//             .toDouble();
+//     second =
+//         (task.plannedEndTime.hour * 60 + task.plannedEndTime.minute).toDouble();
+//     difference = (second - (first + 60)).abs();
+
+//   }
+
+//   return Time(
+//     first: first.abs(),
+//     second: second.abs(),
+//     difference: difference.abs(),
+//   );
+// }
+
 Time changeTimes(TaskModel task) {
   double first = 0;
   double second = 0;
   double difference = 0;
   if (task.startTime != null && task.endTime != null) {
-    first =
-        ((task.startTime!.hour * 60 + task.startTime!.minute) - 60).toDouble();
+    first = ((task.startTime!.hour * 60 + task.startTime!.minute)).toDouble();
     second = (task.endTime!.hour * 60 + task.endTime!.minute).toDouble();
-    difference = (second - (first + 60)).abs();
-    
+    difference = (second - (first)).abs();
   } else {
+    TaskModel newTask = task.copyWith();
+    if (task.plannedStartTime.isAfter(task.plannedEndTime)) {
+      newTask = newTask.copyWith(
+        plannedStartTime: newTask.plannedEndTime,
+        plannedEndTime: newTask.plannedStartTime,
+      );
+    }
     first =
-        ((task.plannedStartTime.hour * 60 + task.plannedStartTime.minute) - 60)
+        ((newTask.plannedStartTime.hour * 60 + newTask.plannedStartTime.minute))
             .toDouble();
-    second =
-        (task.plannedEndTime.hour * 60 + task.plannedEndTime.minute).toDouble();
-    difference = (second - (first + 60)).abs();
-  
+    second = (newTask.plannedEndTime.hour * 60 + newTask.plannedEndTime.minute)
+        .toDouble();
+    difference = (second - (first)).abs();
   }
-
-  return Time(
-    first: first.abs(),
-    second: second.abs(),
-    difference: difference.abs(),
+  final Time time = Time(
+    first: first,
+    second: second,
+    difference: difference,
   );
+  print(time);
+  return time;
 }

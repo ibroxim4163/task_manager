@@ -38,11 +38,13 @@ class AboutPage extends StatelessWidget {
                         child: Text(
                           localization.appName,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 23,
-                            color: AppColors.mainColor,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
+                                color: AppColors.mainColor,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                       const SizedBox(height: 15),

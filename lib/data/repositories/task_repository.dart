@@ -9,7 +9,7 @@ import '../services/local_sqflite_storage.dart';
 abstract interface class ITaskRepository {
   Future<bool> createTask(TaskModel task);
 
-  Future<bool> updateTask({required TaskModel task});
+  Future<bool> updateTask({required TaskModel task, required int id});
 
   Future<bool> deleteTask(int id);
 
@@ -41,8 +41,10 @@ class TaskRepository implements ITaskRepository {
   @override
   Future<bool> createTask(TaskModel task) async {
     try {
-      Map<String, Object?> data = task.toJson()..remove("id");
-      await localStorage.insert(data);
+
+      // Map<String, Object?> data = task.toJson()..remove("id");
+
+      await localStorage.insert(task.toJson());
       return true;
     } catch (e, s) {
       debugPrint("$e,$s");
@@ -51,10 +53,13 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<bool> updateTask({required TaskModel task}) async {
+  Future<bool> updateTask({
+    required TaskModel task,
+    required int id,
+  }) async {
     try {
-      await localStorage.update(task.toJson());
-      print(true);
+      await localStorage.update(task.toJson(), id);
+      print("Went to UPdate");
       return true;
     } catch (e, s) {
       debugPrint("$e,$s");

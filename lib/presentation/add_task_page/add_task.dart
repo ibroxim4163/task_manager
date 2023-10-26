@@ -27,6 +27,8 @@ class TaskAddPage extends StatefulWidget {
 class _TaskAddPageState extends State<TaskAddPage> with TaskAddPageMixin {
   @override
   Widget build(BuildContext context) {
+    print(
+        "TaskmodelTaskmodelTaskmodelTaskmodelTaskmodelTaskmodel${widget.taskmodel}TaskmodelTaskmodelTaskmodelTaskmodel");
     final localization = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -42,73 +44,70 @@ class _TaskAddPageState extends State<TaskAddPage> with TaskAddPageMixin {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 15),
-              _Texts(
-                text: localization.addTask,
+        child: ListView(
+          children: [
+            const SizedBox(height: 15),
+            _Texts(
+              text: localization.addTask,
+            ),
+            const SizedBox(height: 8),
+            CustomTextField(
+              hintText: localization.taskName,
+              controller: taskController,
+            ),
+            const SizedBox(height: 8),
+            _Texts(
+              text: localization.note,
+            ),
+            const SizedBox(height: 8),
+            CustomTextField(
+              hintText: localization.taskNote,
+              controller: noteController,
+            ),
+            const SizedBox(height: 8),
+            _Texts(
+              text: localization.date,
+            ),
+            const SizedBox(height: 8),
+            DatePart(controller: dateController),
+            const SizedBox(height: 12),
+            TimesPart(
+              controllers: [startTimeController, endTimeController],
+            ),
+            const SizedBox(height: 8),
+            _Texts(
+              text: localization.remind,
+            ),
+            const SizedBox(height: 8),
+            RemindPart(controller: remindController),
+            const SizedBox(height: 8),
+            _Texts(
+              text: localization.priority,
+            ),
+            const SizedBox(height: 8),
+            PriorityPart(controller: priorityController),
+            const SizedBox(height: 8),
+            _Texts(
+              text: localization.colors,
+            ),
+            const SizedBox(height: 5),
+            ColorsPart(
+              controller: colorController,
+              task: widget.taskmodel,
+            ),
+            const SizedBox(height: 15),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CustomButton(
+                text: widget.taskmodel == null
+                    ? localization.addTask
+                    : localization.update,
+                onPressed: saveOrUpdateTask,
+                width: 140,
               ),
-              const SizedBox(height: 8),
-              CustomTextField(
-                hintText: localization.taskName,
-                controller: taskController,
-              ),
-              const SizedBox(height: 8),
-              _Texts(
-                text: localization.note,
-              ),
-              const SizedBox(height: 8),
-              CustomTextField(
-                hintText: localization.taskNote,
-                controller: noteController,
-              ),
-              const SizedBox(height: 8),
-              _Texts(
-                text: localization.date,
-              ),
-              const SizedBox(height: 8),
-              DatePart(controller: dateController),
-              const SizedBox(height: 12),
-              TimesPart(
-                controllers: [startTimeController, endTimeController],
-              ),
-              const SizedBox(height: 8),
-              _Texts(
-                text: localization.remind,
-              ),
-              const SizedBox(height: 8),
-              RemindPart(controller: remindController),
-              const SizedBox(height: 8),
-              _Texts(
-                text: localization.priority,
-              ),
-              const SizedBox(height: 8),
-              PriorityPart(controller: priorityController),
-              const SizedBox(height: 8),
-              _Texts(
-                text: localization.colors,
-              ),
-              const SizedBox(height: 5),
-              ColorsPart(
-                controller: colorController,
-                task: widget.taskmodel,
-              ),
-              const SizedBox(height: 15),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: CustomButton(
-                  text: widget.taskmodel == null
-                      ? localization.addTask
-                      : localization.update,
-                  onPressed: saveOrUpdateTask,
-                  width: 140,
-                ),
-              ),
-              const SizedBox(height: 15),
-            ],
-          ),
+            ),
+            const SizedBox(height: 15),
+          ],
         ),
       ),
     );

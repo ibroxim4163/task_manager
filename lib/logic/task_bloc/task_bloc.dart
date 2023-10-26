@@ -95,11 +95,19 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     }
   }
 
-  void _update(UpdateTask event, Emitter<TaskState> emit) async {
+  Future<void> _update(UpdateTask event, Emitter<TaskState> emit) async {
     try {
-      await repository.updateTask( task: event.task);
+      await repository.updateTask(
+        task: event.task,
+        id: event.id,
+      );
     } catch (e) {
-      emit(ErrorState(tasksManager: state.tasksManager, message: "$e"));
+      emit(
+        ErrorState(
+          tasksManager: state.tasksManager,
+          message: "$e",
+        ),
+      );
     }
   }
 

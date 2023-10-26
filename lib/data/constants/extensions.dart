@@ -152,7 +152,6 @@ extension TaskModelExtensions on TaskModel {
     } else if (priority == uz.high && languageIndex == 2) {
       truPriority = uz.high;
     }
-    print("priority=$truPriority");
     return truPriority;
   }
 }

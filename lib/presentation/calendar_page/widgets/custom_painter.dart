@@ -14,7 +14,7 @@ class CustomCalendarPainter extends CustomPainter {
 
     for (int i = 0; i < 24; i++) {
       final textSpan = TextSpan(
-        text: i == 23 ? "00:00" : "${(i + 1).toString().padLeft(2, "0")}:00",
+        text: "${(i).toString().padLeft(2, "0")}:00",
         style: textStyle,
       );
       final textPainter = TextPainter(
