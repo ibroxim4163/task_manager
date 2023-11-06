@@ -62,11 +62,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 125),
+        preferredSize: const Size(
+          double.infinity,
+          130,
+        ),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 40, left: 20),
+              padding: const EdgeInsets.only(
+                top: 40,
+                left: 20,
+              ),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
