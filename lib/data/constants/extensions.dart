@@ -12,8 +12,8 @@ import 'app_colors.dart';
 extension StringExtentions on String {
   TimeOfDay changeStringToTimeOfDay() {
     TimeOfDay timeOfDay = TimeOfDay(
-      hour: int.tryParse(this..substring(0, 2)) ?? TimeOfDay.now().hour,
-      minute: int.tryParse(this..substring(3)) ?? TimeOfDay.now().minute,
+      hour: int.tryParse(substring(0, 2)) ?? TimeOfDay.now().hour,
+      minute: int.tryParse(substring(3)) ?? TimeOfDay.now().minute,
     );
     return timeOfDay;
   }

@@ -27,13 +27,13 @@ dependencies:
   date_picker_timeline: ^1.2.5
 
   flutter_native_splash: ^2.3.3
+  
   flutter_local_notifications: ^15.1.1
   timezone: ^0.9.2
-  uuid: ^4.1.0
 
 
 flutter_native_splash:
-  color: "#ffffff"
+  color: "#FFFFFF"
   image: assets/icons/app_icon.png
   android: true
   ios: true

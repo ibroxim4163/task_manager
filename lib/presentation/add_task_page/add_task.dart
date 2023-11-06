@@ -27,9 +27,7 @@ class TaskAddPage extends StatefulWidget {
 class _TaskAddPageState extends State<TaskAddPage> with TaskAddPageMixin {
   @override
   Widget build(BuildContext context) {
-    print(
-        "TaskmodelTaskmodelTaskmodelTaskmodelTaskmodelTaskmodel${widget.taskmodel}TaskmodelTaskmodelTaskmodelTaskmodel");
-    final localization = AppLocalizations.of(context);
+     final localization = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparent,

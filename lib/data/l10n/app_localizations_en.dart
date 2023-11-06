@@ -178,7 +178,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noTasks => 'You do not have tasks now.\n Please add task';
 
   @override
-  String get todayTasks => 'Today\'s Task';
+  String get todayTasks => 'Today\'s Tasks';
 
   @override
   String get all => 'All';

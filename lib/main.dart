@@ -17,6 +17,7 @@ Future<void> main() async {
   await TaskLocalSqfliteStorage.init();
   await LocalSharedPreferencesStorage.dbInit();
   await NotificationService.settings();
+  await NotificationService.getPermission();
   runApp(const App());
 }
 
@@ -55,7 +56,6 @@ class App extends StatelessWidget {
               .languageIndex();
           final password =
               context.watch<LanguageAndPasswordBloc>().state.password;
-          print("password=$password");
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

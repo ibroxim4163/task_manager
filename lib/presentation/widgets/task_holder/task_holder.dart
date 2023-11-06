@@ -17,16 +17,6 @@ class TaskHolder extends StatefulWidget {
 }
 
 class _TaskHolderState extends State<TaskHolder> {
-  // late final ITaskRepository repository;
-  @override
-  void initState() {
-    // repository = const TaskRepository(
-      // TaskLocalStorage(),
-    // );
-    super.initState();
-    
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,10 +26,16 @@ class _TaskHolderState extends State<TaskHolder> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: widget.task.color,
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
+            ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 7, right: 7, top: 5),
+            padding: const EdgeInsets.only(
+              left: 7,
+              right: 7,
+              top: 5,
+            ),
             child: Column(
               children: [
                 TaskNameAndPriority(task: widget.task),

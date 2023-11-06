@@ -54,6 +54,9 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
             DateTime.now().changeDateToString())
         : (widget.taskmodel?.plannedEndTime.changeDateToString() ??
             DateTime.now().changeDateToString());
+    colorController.text = widget.taskmodel != null
+        ? widget.taskmodel!.color.value.toString()
+        : "";
     super.didChangeDependencies();
   }
 
@@ -70,7 +73,7 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
     super.dispose();
   }
 
-  void saveOrUpdateTask() {
+  void saveOrUpdateTask() async {
     DateTime selectedDate =
         DateTime.tryParse(dateController.text.split("/").reversed.join("-")) ??
             DateTime.now();
@@ -94,6 +97,11 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
       DateTime temp = endTime;
       endTime = startTime;
       startTime = temp;
+    }
+    DateTime check =
+        DateTime(startTime.year, startTime.month, startTime.day, 0, 0);
+    if (startTime == check) {
+      startTime.add(const Duration(minutes: 1));
     }
     final TaskModel task = TaskModel(
       id: 1,
@@ -124,33 +132,29 @@ mixin TaskAddPageMixin on State<TaskAddPage> {
 
     context.read<TaskBloc>().add(const LoadingEvent());
 
-    if (DateTime.now().isBefore(
-      task.plannedStartTime.add(
-        Duration(
-          minutes: -task.remind - 2,
-        ),
-      ),
-    )) {
-      setNotification(task);
-    }
+    final bool? permission = await NotificationService.getPermission();
 
-    Navigator.pop(context);
+    if (DateTime.now().isBefore(
+          task.plannedStartTime.add(
+            Duration(minutes: -task.remind),
+          ),
+        ) &&
+        permission != null &&
+        permission) {
+      NotificationService.sendNotificationSchedule(
+        title: task.taskName,
+        description: task.note,
+        dateTime: task.plannedStartTime.add(Duration(minutes: -task.remind)),
+      );
+    }
+    if (mounted) {
+      Navigator.pop(context);
+    }
   }
 
   String dateToString(DateTime dateTime) {
     return "${dateTime.day.toString().padLeft(2, "0")}"
         "/${dateTime.month.toString().padLeft(2, "0")}/"
         "${dateTime.year}";
-  }
-
-  void setNotification(TaskModel task) async {
-    final permission = await NotificationService.getPermission();
-    if (permission != null && permission) {
-      await NotificationService.sendNotificationSchedule(
-        title: task.taskName,
-        description: task.note,
-        dateTime: task.plannedStartTime.add(Duration(minutes: -task.remind)),
-      );
-    }
   }
 }

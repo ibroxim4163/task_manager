@@ -59,7 +59,6 @@ class TaskRepository implements ITaskRepository {
   }) async {
     try {
       await localStorage.update(task.toJson(), id);
-      print("Went to UPdate");
       return true;
     } catch (e, s) {
       debugPrint("$e,$s");

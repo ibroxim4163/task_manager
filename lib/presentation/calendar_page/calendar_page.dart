@@ -27,12 +27,6 @@ class CalendarPage extends StatelessWidget {
               child: CustomPaint(
                 painter: CustomCalendarPainter(),
                 child: BlocBuilder<TaskBloc, TaskState>(
-                  // buildWhen: (previous, current) {
-                  //   return previous.tasksManager.selectedDayTasks.length !=
-                  //           current.tasksManager.selectedDayTasks.length ||
-                  //       previous.tasksManager.selectedDate !=
-                  //           current.tasksManager.selectedDate;
-                  // },
                   builder: (context, state) {
                     return Stack(
                         children: state.tasksManager.selectedDayTasks.map(
@@ -86,32 +80,6 @@ class CalendarPage extends StatelessWidget {
   }
 }
 
-// Time changeTimes(TaskModel task) {
-//   double first = 0;
-//   double second = 0;
-//   double difference = 0;
-//   if (task.startTime != null && task.endTime != null) {
-//     first =
-//         ((task.startTime!.hour * 60 + task.startTime!.minute) - 60).toDouble();
-//     second = (task.endTime!.hour * 60 + task.endTime!.minute).toDouble();
-//     difference = (second - (first + 60)).abs();
-
-//   } else {
-//     first =
-//         ((task.plannedStartTime.hour * 60 + task.plannedStartTime.minute) - 60)
-//             .toDouble();
-//     second =
-//         (task.plannedEndTime.hour * 60 + task.plannedEndTime.minute).toDouble();
-//     difference = (second - (first + 60)).abs();
-
-//   }
-
-//   return Time(
-//     first: first.abs(),
-//     second: second.abs(),
-//     difference: difference.abs(),
-//   );
-// }
 
 Time changeTimes(TaskModel task) {
   double first = 0;
@@ -141,6 +109,5 @@ Time changeTimes(TaskModel task) {
     second: second,
     difference: difference,
   );
-  print(time);
   return time;
 }

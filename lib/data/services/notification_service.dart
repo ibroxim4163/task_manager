@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'dart:math';
 
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -63,6 +63,8 @@ sealed class NotificationService {
       sound: RawResourceAndroidNotificationSound("notification"),
       category: AndroidNotificationCategory.message,
       enableVibration: true,
+      autoCancel: true,
+      color: Color(0xFF5DC6F3),
     );
 
     const DarwinNotificationDetails darwinNotificationDetails =
@@ -73,19 +75,6 @@ sealed class NotificationService {
       macOS: darwinNotificationDetails,
     );
     return notificationDetails;
-  }
-
-  static Future<void> sendNotification({
-    required String title,
-    required String description,
-  }) async {
-    await flutterLocalNotificationsPlugin.show(
-      Random().nextInt(1000),
-      title,
-      description,
-      details,
-      payload: 'Data',
-    );
   }
 
   static Future<void> sendNotificationSchedule({
@@ -101,24 +90,6 @@ sealed class NotificationService {
       title,
       description,
       tzDateTime,
-      details,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-    );
-  }
-
-  static Future<void> sendNotDuration(
-      {required String title,
-      required String description,
-      required Duration duration}) async {
-    tz.initializeTimeZones();
-    var currentDateTime =
-        tz.TZDateTime.now(tz.getLocation('Asia/Tashkent')).add(duration);
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
-      title,
-      description,
-      currentDateTime,
       details,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,

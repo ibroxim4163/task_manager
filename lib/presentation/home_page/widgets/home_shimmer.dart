@@ -11,68 +11,73 @@ class HomeShimmer extends StatelessWidget {
       body: SafeArea(
         child: ListView.separated(
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  border: Border.all(
-                    color: AppColors.greyColor,
-                    width: 3,
-                  ),
+            return SizedBox(
+              height: 115,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
                 ),
-                child: const Column(
-                  children: [
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomBox(
-                          width: 80,
-                          height: 15,
-                          padding: EdgeInsets.only(
-                            left: 10,
-                            right: 15,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    border: Border.all(
+                      color: AppColors.greyColor,
+                      width: 3,
+                    ),
+                  ),
+                  child: const Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomBox(
+                            width: 80,
+                            height: 15,
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 15,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomBox(
-                          width: 120,
-                          height: 15,
-                          padding: EdgeInsets.only(left: 10),
-                        ),
-                        CustomBox(
-                          height: 20,
-                          width: 70,
-                          padding: EdgeInsets.only(right: 20),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomBox(
-                          width: 120,
-                          height: 15,
-                          padding: EdgeInsets.only(left: 10),
-                        ),
-                        CustomBox(
-                          height: 20,
-                          width: 5,
-                          padding: EdgeInsets.only(right: 15),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                  ],
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomBox(
+                            width: 120,
+                            height: 15,
+                            padding: EdgeInsets.only(left: 10),
+                          ),
+                          CustomBox(
+                            height: 20,
+                            width: 70,
+                            padding: EdgeInsets.only(right: 20),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomBox(
+                            width: 120,
+                            height: 15,
+                            padding: EdgeInsets.only(left: 10),
+                          ),
+                          CustomBox(
+                            height: 20,
+                            width: 5,
+                            padding: EdgeInsets.only(right: 15),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
                 ),
               ),
             );

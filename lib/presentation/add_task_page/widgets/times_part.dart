@@ -17,7 +17,7 @@ class TimesPart extends StatelessWidget {
       {required int index, required BuildContext context}) async {
     TimeOfDay? selectedTime = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: controllers[index].text.changeStringToTimeOfDay(),
     );
     if (selectedTime != null) {
       controllers[index].text = selectedTime.changeTimeToString();

@@ -440,7 +440,7 @@ abstract class AppLocalizations {
   /// No description provided for @todayTasks.
   ///
   /// In en, this message translates to:
-  /// **'Today\'s Task'**
+  /// **'Today\'s Tasks'**
   String get todayTasks;
 
   /// No description provided for @all.

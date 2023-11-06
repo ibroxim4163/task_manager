@@ -54,10 +54,11 @@ class _HomeSectionsState extends State<HomeSections> {
                     ? AppColors.mainColor
                     : AppColors.whiteColor,
               ),
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   widget.selectedSection.value = index;
                 });
+                
               },
               child: Text(
                 sectionNames[index],

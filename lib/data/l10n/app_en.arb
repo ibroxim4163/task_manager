@@ -56,7 +56,7 @@
     "deleteTask":"Delete",
     "hello":"Hello!",
     "noTasks":"You do not have tasks now.\n Please add task",
-    "todayTasks":"Today's Task",
+    "todayTasks":"Today's Tasks",
     "all":"All",
     "toDo":"To-Do",
     "completed":"Completed",
