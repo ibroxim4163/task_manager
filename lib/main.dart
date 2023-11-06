@@ -57,6 +57,7 @@ class App extends StatelessWidget {
           final password =
               context.watch<LanguageAndPasswordBloc>().state.password;
           return MaterialApp(
+            title: "Task Manager",
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
